@@ -1,0 +1,35 @@
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+<form class="form-horizontal" method="post">
+    <fieldset>
+
+        <legend>Importer</legend>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="csv_path">CSV path(*)</label>  
+            <div class="col-md-4">
+            <input id="csv_path" name="csv_path" type="text" placeholder="Select CSV path" class="form-control input-md" required="">
+            <span class="help-block">Select the location of the folder where devices.csv and content.csv is located</span>  
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="delimiter">Delimiter</label>
+            <div class="col-md-4">
+                <select id="delimiter" name="delimiter" class="form-control">
+                    <option value=";">;</option>
+                    <option value=",">,</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="importbutton"></label>
+            <div class="col-md-4">
+                <button id="importbutton" name="importbutton" class="btn btn-primary">Import</button>
+            </div>
+        </div>
+
+    </fieldset>
+</form>
