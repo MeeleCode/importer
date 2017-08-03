@@ -5,36 +5,31 @@ from django.db import models
 
 class Device(models.Model):
     STATUS_CHOICES = (
-        ('EN', 'enabled'),
-        ('DS', 'disabled'),
-        ('DL', 'deleted')
+        ('enabled', 'Enabled'),
+        ('disabled', 'Disabled'),
+        ('deleted', 'Deleted')
     )
 
     name = models.CharField(max_length=32)
     description = models.TextField()
     code = models.CharField(max_length=30)
-    date_created = models.DateTimeField()
-    date_updated = models.DateTimeField()
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_updated = models.DateTimeField(blank=True, null=True)
     expire_date = models.DateTimeField()
     status = models.CharField(
-        max_length = 2,
+        max_length = 8,
         choices = STATUS_CHOICES,
-        default = 'D',
+        default = 'disabled',
     )
-
-    def publish(self):
-        self.date_created = timezone.now()
-        self.save()
 
     def __str__(self):
         return self.name
 
-
 class Content(models.Model):
     STATUS_CHOICES = (
-        ('EN', 'enabled'),
-        ('DS', 'disabled'),
-        ('DL', 'deleted')
+        ('enabled', 'Enabled'),
+        ('disabled', 'Disabled'),
+        ('deleted', 'Deleted')
     )
 
     name = models.CharField(max_length=32)
@@ -43,18 +38,14 @@ class Content(models.Model):
         'Device',
         on_delete=models.CASCADE,
     )
-    date_created = models.DateTimeField()
-    date_updated = models.DateTimeField()
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_updated = models.DateTimeField(blank=True, null=True)
     expire_date = models.DateTimeField()
     status = models.CharField(
-        max_length = 2,
+        max_length = 8,
         choices = STATUS_CHOICES,
-        default = 'D',
-    )   
-
-    def publish(self):
-        self.date_created = timezone.now()
-        self.save()
+        default = 'disabled',
+    )
 
     def __str__(self):
         return self.name

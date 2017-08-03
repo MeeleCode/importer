@@ -25,7 +25,7 @@ SECRET_KEY = '&cvio%f5@ev7^ltucm@u)8m^a+v8x%y_c2#8@n32fbyf+ykk89'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.0.22', '192.168.0.18']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -127,3 +127,22 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'ERROR',
+            'class': 'logging.FileHandler',
+            'filename': 'log/intis.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+    },
+}

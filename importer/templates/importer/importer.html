@@ -1,11 +1,10 @@
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 
+<!doctype html>
 <form class="form-horizontal" method="post">
+    {% include "importer/menu.html" %}
     <fieldset>
-
-        <legend>Importer</legend>
-
         <div class="form-group">
             <label class="col-md-4 control-label" for="csv_path">CSV path(*)</label>  
             <div class="col-md-4">
@@ -18,8 +17,8 @@
             <label class="col-md-4 control-label" for="delimiter">Delimiter</label>
             <div class="col-md-4">
                 <select id="delimiter" name="delimiter" class="form-control">
-                    <option value=";">;</option>
                     <option value=",">,</option>
+                    <option value=";">;</option>
                 </select>
             </div>
         </div>
@@ -30,6 +29,24 @@
                 <button id="importbutton" name="importbutton" class="btn btn-primary">Import</button>
             </div>
         </div>
+
+        {% if imported %}
+        <div class="form-group">
+            <label class="col-md-4" ></label>
+            <div class="col-md-4 alert alert-success">
+                {{ imported|linebreaksbr }}
+            </div>
+        </div>
+        {% endif %} 
+
+        {% if errors %}
+        <div class="form-group">
+            <label class="col-md-4" ></label>
+            <div class="col-md-4 alert alert-warning">
+                {{ errors|linebreaksbr }}
+            </div>
+        </div>
+        {% endif %}   
 
     </fieldset>
 </form>

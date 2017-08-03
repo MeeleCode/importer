@@ -13,7 +13,7 @@ class DeviceFilter(django_filters.FilterSet):
             'date_created': ['lt', 'gt'],
             'expire_date': ['lt', 'gt']
         }
-        order_by = ['name']
+        order_by = ['name']     
 
 class ContentFilter(django_filters.FilterSet):
     class Meta:
