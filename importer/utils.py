@@ -10,6 +10,8 @@ import logging
 import pytz
 import sys
 
+logger = logging.getLogger('django')
+
 def importDevices(file_path, delimiter):
     errors = []
     rownum = 0
@@ -57,11 +59,11 @@ def importDevices(file_path, delimiter):
             continue
                               
     if len(errors) > 0:
-        logging.error(errors)
+        logger.error("\n".join(errors))
         return False, errors
     else:
         message = "Succesfully processed %s device rows!" % str(rownum)
-        logging.info(message)
+        logger.info(message)
         return True, message
 
 def importContent(file_path, delimiter):
@@ -111,20 +113,16 @@ def importContent(file_path, delimiter):
             continue
 
     if len(errors) > 0:
-        logging.error(errors)
+        logger.error("\n".join(errors))
         return False, errors
     else:
         message = "Succesfully processed %s content rows!" % str(rownum)
-        logging.info(message)
+        logger.info(message)
         return True, message         
 
 def importData(csv_path, delimiter):
     files = [f for f in listdir(csv_path) if isfile(join(csv_path, f))]
 
-    resultDevices = []
-    resultContent = []
-    importDevicesSuccess = True
-    importContentSuccess = True
     if 'devices.csv' in files:
         importDevicesSuccess, resultDevices = importDevices(csv_path + '/devices.csv', delimiter)
     if 'content.csv' in files:
